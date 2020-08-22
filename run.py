@@ -5,7 +5,15 @@ from pprint import pprint
 from settings import API_KEY
 import cv2
 import webbrowser
+import os
 import pyzbar.pyzbar as pyzbar
+import logging
+# Enable logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+
+logger = logging.getLogger(__name__)
+PORT = int(os.environ.get('PORT', 5000))
 messages=[]
 def get_url():
     contents = requests.get('https://random.dog/woof.json').json()    
@@ -80,7 +88,6 @@ def clear(bot, update):
 #     bot.setChatPhoto(chat_id=update.message.chat_id ,photo='qrcode.png')
 def main():
     updater = Updater(API_KEY)
-    
     dp = updater.dispatcher
     # dp.add_handler(CommandHandler('start',start))
     dp.add_handler(CommandHandler('bop',bop))
@@ -90,7 +97,11 @@ def main():
     qr_handler = MessageHandler(Filters.photo,check_qr)
     dp.add_handler(echo_handler)
     dp.add_handler(qr_handler)
-    updater.start_polling()
+    # updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=API_KEY)
+    updater.bot.setWebhook('https://https://telegqrbot.herokuapp.com//' + API_KEY)
     updater.idle()
 
 
