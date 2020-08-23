@@ -96,7 +96,7 @@ def main():
     echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
     # qr_handler = MessageHandler(Filters.photo,check_qr)
     dp.add_handler(echo_handler)
-    dp.add_handler(qr_handler)
+    # dp.add_handler(qr_handler)
     updater.start_polling()
     # updater.start_webhook(listen="0.0.0.0",
     #                       port=int(PORT),
