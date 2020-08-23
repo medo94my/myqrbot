@@ -1,2 +1,3 @@
 # you can list packages
 libgl1-mesa-glx
+libzbar0
