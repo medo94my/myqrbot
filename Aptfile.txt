@@ -5,4 +5,5 @@ libc6
 libjpeg8
 libv4l-0
 libx11-6
+gcc
 pciutils lm-sensors
