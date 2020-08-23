@@ -6,7 +6,7 @@ from settings import API_KEY
 import cv2
 import webbrowser
 import os
-import pyzbar.pyzbar as pyzbar
+# import pyzbar.pyzbar as pyzbar
 import logging
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
