@@ -1,7 +1,7 @@
 import cv2
 import webbrowser
 # read the QRCODE image
-img = cv2.imread("test-01.png")
+img = cv2.imread("qrcode.png")
 # initialize the cv2 QRCode detector
 detector = cv2.QRCodeDetector()
 # detect and decode

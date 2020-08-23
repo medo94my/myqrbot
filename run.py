@@ -50,28 +50,28 @@ def echo(bot, update):
         chat_id=update.effective_chat.id, text=update.message.text)
         messages.append(update.message)
 
-def check_qr(bot,update):
-    pprint(update.message)
-    chat_id = update.message.chat_id
-    photo = update.message.photo[-1]
-    id_img = update.message.photo[-1].file_id
-    foto = bot.getFile(id_img)
-    new_file = bot.get_file(foto.file_id)
-    new_file.download('qrcode.png')
-    img = cv2.imread("qrcode.png")
-    decodeObject=pyzbar.decode(img)
-    if decodeObject:
-        data=decodeObject[0].data
-        if data is not None:
-            bot.send_message(chat_id=chat_id, text=data.decode('utf-8'))
-            messages.append(update.message)
-    else:
-        bot.send_message(chat_id=chat_id, text="Not Valid Qr Code")
-        messages.append(update.message)
-        # bot.send_photo(chat_id=chat_id, photo=photo)
-    # if update.message.photo:
-    #     chat_id = update.message.chat_id
-    #     bot.send_photo(chat_id=chat_id, photo=photo)
+# def check_qr(bot,update):
+#     pprint(update.message)
+#     chat_id = update.message.chat_id
+#     photo = update.message.photo[-1]
+#     id_img = update.message.photo[-1].file_id
+#     foto = bot.getFile(id_img)
+#     new_file = bot.get_file(foto.file_id)
+#     new_file.download('qrcode.png')
+#     img = cv2.imread("qrcode.png")
+#     decodeObject=pyzbar.decode(img)
+#     if decodeObject:
+#         data=decodeObject[0].data
+#         if data is not None:
+#             bot.send_message(chat_id=chat_id, text=data.decode('utf-8'))
+#             messages.append(update.message)
+#     else:
+#         bot.send_message(chat_id=chat_id, text="Not Valid Qr Code")
+#         messages.append(update.message)
+#         # bot.send_photo(chat_id=chat_id, photo=photo)
+#     # if update.message.photo:
+#     #     chat_id = update.message.chat_id
+#     #     bot.send_photo(chat_id=chat_id, photo=photo)
 def clear(bot, update):
     chat_id = update.message.chat_id
     if messages:
@@ -94,14 +94,14 @@ def main():
     dp.add_handler(CommandHandler('q',q))
     dp.add_handler(CommandHandler('clear',clear))
     echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
-    qr_handler = MessageHandler(Filters.photo,check_qr)
+    # qr_handler = MessageHandler(Filters.photo,check_qr)
     dp.add_handler(echo_handler)
     dp.add_handler(qr_handler)
-    # updater.start_polling()
-    updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=API_KEY)
-    updater.bot.setWebhook('https://https://telegqrbot.herokuapp.com//' + API_KEY)
+    updater.start_polling()
+    # updater.start_webhook(listen="0.0.0.0",
+    #                       port=int(PORT),
+    #                       url_path=API_KEY)
+    # updater.bot.setWebhook('https://https://telegqrbot.herokuapp.com//' + API_KEY)
     updater.idle()
 
 
