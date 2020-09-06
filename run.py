@@ -97,11 +97,11 @@ def main():
     qr_handler = MessageHandler(Filters.photo,check_qr)
     dp.add_handler(echo_handler)
     dp.add_handler(qr_handler)
-    updater.start_polling()
-    # updater.start_webhook(listen="0.0.0.0",
-    #                       port=int(PORT),
-    #                       url_path=API_KEY)
-    # updater.bot.setWebhook('https://https://telegqrbot.herokuapp.com//' + API_KEY)
+    #updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0",
+                           port=int(PORT),
+                          url_path=API_KEY)
+    updater.bot.setWebhook('https://https://telegqrbot.herokuapp.com//' + API_KEY)
     updater.idle()
 
 
