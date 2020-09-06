@@ -1,9 +1,5 @@
 # you can list packages
-libgl1-mesa-glx
+update
+upgrade
+libgl1-mesa-glx 
 libzbar0
-libc6
-libjpeg8
-libv4l-0
-libx11-6
-gcc
-pciutils lm-sensors
